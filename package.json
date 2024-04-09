@@ -1,0 +1,78 @@
+{
+  "name": "git-branch-warn",
+  "displayName": "git-branch-warn",
+  "description": "Prompt that the current working branch of git is a sensitive branch",
+  "version": "1.0.0",
+  "publisher": "crper",
+  "author": {
+    "name": "crper",
+    "url": "https://github.com/crper"
+  },
+  "repository": {
+    "url": "https://github.com/crper/vsc-git-branch-warning",
+    "type": "git"
+  },
+  "icon": "images/icon.png",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "pricing": "Free",
+  "main": "./out/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "Git Branch warning",
+      "properties": {
+        "gitBranchWarning.sensitiveBranches": {
+          "type": "array",
+          "default": [
+            "main",
+            "master"
+          ],
+          "items": {
+            "type": "string"
+          },
+          "description": "List of sensitive branches"
+        },
+        "gitBranchWarning.sensitiveTooltip": {
+          "type": "string",
+          "default": "This branch is a sensitive branch",
+          "description": "Tooltip for the warning"
+        },
+        "gitBranchWarning.sensitiveText": {
+          "type": "string",
+          "default": "⚠️ WARNING",
+          "description": "Text for the warning"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "pnpm run compile && pnpm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test",
+    "package": "pnpm vsce package --no-dependencies",
+    "publish": "pnpm vsce publish --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^7.4.0",
+    "@typescript-eslint/parser": "^7.4.0",
+    "@vscode/test-cli": "^0.0.8",
+    "@vscode/test-electron": "^2.3.9",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  }
+}
